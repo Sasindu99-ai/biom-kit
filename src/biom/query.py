@@ -59,14 +59,14 @@ class F:
 		self.field_name = str(field_name).strip()
 		self.scope = scope
 
-	def __eq__(self, other: Any) -> FilterRule:
+	def __eq__(self, other: object) -> FilterRule:
 		return FilterRule(self.field_name, 'equals', other, scope=self.scope)
 
-	def __ne__(self, other: Any) -> FilterRule:
+	def __ne__(self, other: object) -> FilterRule:
 		# Since BIOM backend doesn't have direct neq, equals with inverted logic or custom
 		raise BiomFilterError(
 			'Inequality (!=) is not directly supported by backend operators. '
-			'Use specific comparison operators (gt, lt) or is_empty/is_not_empty.'
+			'Use specific comparison operators (gt, lt) or is_empty/is_not_empty.',
 		)
 
 	def __gt__(self, other: Any) -> FilterRule:
@@ -154,7 +154,7 @@ def parse_kwargs_filters(**kwargs) -> list[FilterRule]:
 				rules.append(FilterRule(field, operator, val_from, value_to=value_to))
 			else:
 				raise BiomFilterError(
-					f'Filter "{raw_key}" with operator "between" requires a 2-tuple (val_from, val_to).'
+					f'Filter "{raw_key}" with operator "between" requires a 2-tuple (val_from, val_to).',
 				)
 		elif operator in ('is_empty', 'is_not_empty'):
 			rules.append(FilterRule(field, operator))
@@ -181,7 +181,7 @@ def compile_filters(*rules, **kwargs) -> list[dict[str, Any]]:
 					value=item.get('value'),
 					value_to=item.get('valueTo'),
 					scope=item.get('scope', 'auto'),
-				)
+				),
 			)
 		else:
 			raise BiomFilterError(f'Unsupported filter expression: {item}')

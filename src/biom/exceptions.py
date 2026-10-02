@@ -13,22 +13,18 @@ __all__ = [
 
 class BiomError(Exception):
 	"""Base exception for all biom-kit errors."""
-	pass
 
 
 class BiomAuthError(BiomError):
 	"""Raised when authentication fails (missing, invalid, or revoked API key)."""
-	pass
 
 
 class BiomNotFoundError(BiomError):
 	"""Raised when a requested resource (dataset, variable, etc.) does not exist."""
-	pass
 
 
 class BiomFilterError(BiomError):
 	"""Raised when invalid filtering parameters or operators are specified."""
-	pass
 
 
 class BiomAPIError(BiomError):

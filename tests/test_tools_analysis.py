@@ -1,5 +1,4 @@
 import pandas as pd
-
 from biom.tools.analysis import (
 	compare_groups,
 	correlation_matrix,

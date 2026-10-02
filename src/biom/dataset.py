@@ -6,7 +6,6 @@ from typing import TYPE_CHECKING, Any
 
 import pandas as pd
 
-from .exceptions import BiomFilterError
 from .models import DatasetInfo, QueryResult, VariableCatalog
 from .query import FilterRule, compile_filters
 
@@ -71,7 +70,7 @@ class Dataset:
 			for op, val in kwargs.items():
 				val_from, val_to = (val[0], val[1]) if (op == 'between' and isinstance(val, (list, tuple))) else (val, None)
 				clone._filters.append(
-					FilterRule(field_name, op, val_from, value_to=val_to).to_dict()
+					FilterRule(field_name, op, val_from, value_to=val_to).to_dict(),
 				)
 			return clone
 

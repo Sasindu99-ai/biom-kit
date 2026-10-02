@@ -1,7 +1,6 @@
 from unittest.mock import MagicMock, patch
 
 import pandas as pd
-
 from biom import BiomClient
 from biom.models import DatasetCatalog, FieldCatalog, VariableCatalog
 
@@ -65,7 +64,7 @@ def test_datasets_discovery():
 				'variableCount': 24,
 				'createdAt': '2024-02-01',
 			},
-		]
+		],
 	}
 
 	with patch.object(client.session, 'request', return_value=mock_response):
@@ -122,7 +121,7 @@ def test_search_variables():
 	mock_response.json.return_value = {
 		'variables': [
 			{'name': 'Fasting Glucose', 'type': 'NUMBER', 'operators': ['gt', 'lt']},
-		]
+		],
 	}
 
 	with patch.object(client.session, 'request', return_value=mock_response):

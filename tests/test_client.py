@@ -1,9 +1,7 @@
 from unittest.mock import MagicMock, patch
 
-import pytest
-import requests
-
 import biom
+import pytest
 from biom import BiomClient
 from biom.exceptions import BiomAPIError, BiomAuthError, BiomNotFoundError
 
@@ -73,9 +71,8 @@ def test_client_not_found_on_404():
 	mock_response.status_code = 404
 	mock_response.ok = False
 
-	with patch.object(client.session, 'request', return_value=mock_response):
-		with pytest.raises(BiomNotFoundError):
-			client._request('GET', '/api/v1/missing')
+	with patch.object(client.session, 'request', return_value=mock_response), pytest.raises(BiomNotFoundError):
+		client._request('GET', '/api/v1/missing')
 
 
 def test_client_api_error_on_500():
@@ -86,6 +83,5 @@ def test_client_api_error_on_500():
 	mock_response.ok = False
 	mock_response.json.return_value = {'error': 'Internal database failure'}
 
-	with patch.object(client.session, 'request', return_value=mock_response):
-		with pytest.raises(BiomAPIError):
-			client._request('GET', '/api/v1/crash')
+	with patch.object(client.session, 'request', return_value=mock_response), pytest.raises(BiomAPIError):
+		client._request('GET', '/api/v1/crash')

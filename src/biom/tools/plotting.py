@@ -3,7 +3,6 @@ Premade publication-quality visualization tools for BIOM datasets.
 Built with clean styling, suitable for Jupyter Notebooks and Google Colab.
 """
 
-from typing import Any
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd

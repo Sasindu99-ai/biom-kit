@@ -32,7 +32,7 @@ pip install biom-kit
 Or install directly in a **Google Colab** cell or virtual environment:
 
 ```bash
-!pip install git+https://github.com/Sasindu99-ai/BIOM.git#subdirectory=biom-kit
+!pip install git+https://github.com/Sasindu99-ai/biom-kit.git
 ```
 
 ---

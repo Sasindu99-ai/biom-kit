@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-
 from biom.tools.cleaning import (
 	clean_dataset,
 	detect_outliers,

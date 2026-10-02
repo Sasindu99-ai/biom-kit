@@ -2,7 +2,6 @@ from unittest.mock import MagicMock, patch
 
 import pandas as pd
 import pytest
-
 from biom import BiomClient, F
 from biom.exceptions import BiomFilterError
 from biom.query import compile_filters, parse_kwargs_filters

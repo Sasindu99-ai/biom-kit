@@ -4,6 +4,7 @@ Handles API key authentication, request dispatching, and response parsing.
 """
 
 from typing import Any
+
 import requests
 
 from .config import get_api_key, get_base_url, get_timeout
@@ -126,7 +127,7 @@ class BiomClient:
 					field_type=f.get('type', 'TEXT'),
 					operators=f.get('operators', []),
 					description=f.get('description', ''),
-				)
+				),
 			)
 		return FieldCatalog(fields_list)
 

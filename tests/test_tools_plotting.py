@@ -1,6 +1,4 @@
 import matplotlib.pyplot as plt
-import pandas as pd
-
 from biom.tools.plotting import (
 	plot_comparison,
 	plot_correlation_matrix,
