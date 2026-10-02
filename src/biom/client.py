@@ -3,6 +3,7 @@ HTTP Client for the BIOM platform.
 Handles API key authentication, request dispatching, and response parsing.
 """
 
+import contextlib
 from typing import Any
 
 import requests
@@ -87,7 +88,12 @@ class BiomClient:
 			raise BiomAuthError(msg)
 
 		if response.status_code == 404:
-			raise BiomNotFoundError(f'Requested resource at {url} was not found (404).')
+			msg = f'Requested resource at {url} was not found (404).'
+			with contextlib.suppress(Exception):
+				detail = response.json().get('detail') or response.json().get('message')
+				if detail:
+					msg = f'{detail}'
+			raise BiomNotFoundError(msg)
 
 		if not response.ok:
 			try:
